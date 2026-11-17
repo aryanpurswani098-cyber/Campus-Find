@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cf-surface text-cf-text-primary font-sans;
+    font-size: 15px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cf-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-300;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-cf-green ring-offset-2;
+  }
+}
+
+@layer components {
+  /* Shimmer skeleton */
+  .skeleton {
+    @apply bg-gray-200 rounded animate-pulse;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Status badges */
+  .badge-lost {
+    @apply bg-red-50 text-red-600 border border-red-100;
+  }
+  .badge-found {
+    @apply bg-green-50 text-cf-green border border-green-100;
+  }
+  .badge-pending {
+    @apply bg-amber-50 text-amber-600 border border-amber-100;
+  }
+  .badge-claimed {
+    @apply bg-blue-50 text-blue-600 border border-blue-100;
+  }
+  .badge-recovered {
+    @apply bg-emerald-50 text-emerald-600 border border-emerald-100;
+  }
+  .badge-matched {
+    @apply bg-purple-50 text-purple-600 border border-purple-100;
+  }
+
+  /* Match score badge */
+  .match-badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .match-strong  { @apply bg-cf-green-100 text-cf-green-700; }
+  .match-high    { @apply bg-blue-50 text-blue-600; }
+  .match-medium  { @apply bg-amber-50 text-amber-600; }
+  .match-low     { @apply bg-gray-100 text-gray-500; }
+}
+
+@layer utilities {
+  /* Sidebar active indicator */
+  .sidebar-active-bar {
+    @apply before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:bg-cf-green before:rounded-full;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
